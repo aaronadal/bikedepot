@@ -14,8 +14,8 @@ export abstract class Event {
   public readonly eventWhen: number;
 
   constructor(
-    public readonly entityId: string,
     public readonly eventName: string,
+    public readonly entityId: string,
     eventId?: string,
     eventWhen?: number,
   ) {

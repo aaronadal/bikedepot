@@ -29,4 +29,10 @@ export class CustomerAddress {
   get postalCode(): CustomerAddressPostalCode {
     return this._postalCode
   }
+
+  equals(other: CustomerAddress): boolean {
+    return this.address.equals(other.address)
+      && this.city.equals(other.city)
+      && this.postalCode.equals(other.postalCode);
+  }
 }

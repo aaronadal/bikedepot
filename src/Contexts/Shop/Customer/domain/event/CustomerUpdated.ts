@@ -1,24 +1,24 @@
 import { Event, type EventBody } from '../../../../Shared/domain/bus/event/Event';
 
-export type CustomerCreatedAddressBody = {
+export type CustomerUpdatedAddressBody = {
   readonly address: string;
   readonly city: string;
   readonly postalCode: string;
 };
 
-export type CustomerCreatedBody = {
+export type CustomerUpdatedBody = {
   readonly entityId: string;
   readonly name: string;
   readonly email: string;
-  readonly address: CustomerCreatedAddressBody;
+  readonly address: CustomerUpdatedAddressBody;
 };
 
-export class CustomerCreated extends Event {
-  static readonly EVENT_NAME = 'shop.customer.created';
+export class CustomerUpdated extends Event {
+  static readonly EVENT_NAME = 'shop.customer.updated';
 
   readonly name: string;
   readonly email: string;
-  readonly address: CustomerCreatedAddressBody;
+  readonly address: CustomerUpdatedAddressBody;
 
   constructor(
     {
@@ -28,16 +28,16 @@ export class CustomerCreated extends Event {
       name,
       email,
       address,
-    }: Partial<EventBody> & CustomerCreatedBody
+    }: Partial<EventBody> & CustomerUpdatedBody
   ) {
-    super(CustomerCreated.EVENT_NAME, entityId, eventId, eventWhen);
+    super(CustomerUpdated.EVENT_NAME, entityId, eventId, eventWhen);
 
     this.name = name;
     this.email = email;
     this.address = address;
   }
 
-  toPrimitives(): EventBody & CustomerCreatedBody {
+  toPrimitives(): EventBody & CustomerUpdatedBody {
     return {
       eventId: this.eventId,
       eventWhen: this.eventWhen,
