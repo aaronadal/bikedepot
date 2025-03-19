@@ -1,6 +1,6 @@
 import { Query } from './Query';
 
-export interface CommandHandler<T, Q extends Query<T>> {
+export interface QueryHandler<Q extends Query<T>, T> {
   supports(): Query<T>;
   handle(query: Q): Promise<T>;
 }
