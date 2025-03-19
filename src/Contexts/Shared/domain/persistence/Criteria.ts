@@ -1,17 +1,4 @@
-export type CriteriaFilter = {
-    field: string;
-    value: string|number;
-}
-
-export type CriteriaOrder = {
-    field: string;
+export type CriteriaOrder<Fields extends string> = {
+    field: Fields;
     order: 'asc'|'desc';
-}
-
-export class Criteria {
-    constructor(
-        public readonly filters: CriteriaFilter[],
-        public readonly orders: CriteriaOrder[],
-    ) {
-    }
 }

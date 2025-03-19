@@ -1,6 +1,7 @@
+import { CriteriaOrder } from "../../../../../../../src/Contexts/Shared/domain/persistence/Criteria";
 import { Customer } from "../../../../../../../src/Contexts/Shop/Customer/domain/entity/Customer";
 import { CustomerId } from "../../../../../../../src/Contexts/Shop/Customer/domain/entity/CustomerId";
-import { CustomerRepository } from "../../../../../../../src/Contexts/Shop/Customer/domain/persistence/CustomerRepository";
+import { CustomerOrderByFields, CustomerRepository } from "../../../../../../../src/Contexts/Shop/Customer/domain/persistence/CustomerRepository";
 
 export class CustomerRepositoryMocker {
     readonly mock: CustomerRepository;
@@ -9,7 +10,7 @@ export class CustomerRepositoryMocker {
         this.mock = {
             save: jest.fn().mockResolvedValue(Promise.resolve(undefined)),
             search: jest.fn(),
-            matching: jest.fn(),
+            all: jest.fn(),
             delete: jest.fn().mockResolvedValue(Promise.resolve(undefined)),
         };
     }
@@ -20,6 +21,10 @@ export class CustomerRepositoryMocker {
 
     notFound(): void {
         (this.mock.search as jest.Mock).mockResolvedValueOnce(null)
+    }
+
+    all(customers: Customer[]): void {
+        (this.mock.all as jest.Mock).mockResolvedValueOnce(Promise.resolve(customers))
     }
 
     assertSaved(customer: Customer): void {
@@ -33,6 +38,10 @@ export class CustomerRepositoryMocker {
         const actual = this.getData(args[0])
 
         expect(actual).toMatchObject(expected)
+    }
+
+    assertAll(orderBy?: CriteriaOrder<CustomerOrderByFields>): void {
+        expect(this.mock.all).toHaveBeenCalledWith(orderBy)
     }
 
     assertDeleted(id: CustomerId): void {

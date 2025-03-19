@@ -1,6 +1,4 @@
-import { Query } from "../../../../Shared/domain/bus/query/Query";
 import { QueryHandler } from "../../../../Shared/domain/bus/query/QueryHandler";
-import { Customer } from "../../domain/entity/Customer";
 import { CustomerId } from "../../domain/entity/CustomerId";
 import { CustomerFinder } from "../../domain/persistence/CustomerFinder";
 import { CustomerRepository } from "../../domain/persistence/CustomerRepository";
@@ -16,11 +14,11 @@ export class GetCustomerHandler implements QueryHandler<GetCustomerQuery, Custom
         this.finder = new CustomerFinder(repo)
     }
 
-    supports(): Query<Customer> {
+    supports() {
         return GetCustomerQuery;
     }
 
-    async handle(query: GetCustomerQuery): Promise<CustomerView> {
+    async handle(query: GetCustomerQuery) {
         const id = CustomerId.fromValue(query.id)
         const customer = await this.finder.invoke(id)
 

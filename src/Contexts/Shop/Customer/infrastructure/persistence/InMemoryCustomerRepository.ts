@@ -1,7 +1,7 @@
-import { Criteria } from "../../../../Shared/domain/persistence/Criteria";
+import { CriteriaOrder } from "../../../../Shared/domain/persistence/Criteria";
 import { Customer } from "../../domain/entity/Customer";
 import { CustomerId } from "../../domain/entity/CustomerId";
-import { CustomerRepository } from "../../domain/persistence/CustomerRepository";
+import { CustomerOrderByFields, CustomerRepository } from "../../domain/persistence/CustomerRepository";
 
 export class InMemoryCustomerRepository implements CustomerRepository {
     private customers: Map<string, Customer>;
@@ -18,12 +18,27 @@ export class InMemoryCustomerRepository implements CustomerRepository {
         return this.customers.get(id.value) || null;
     }
 
-    async matching(criteria: Criteria): Promise<Customer[]> {
-        if(criteria.filters.length > 0 || criteria.orders.length > 0) {
-            throw new Error("Criteria not suported by now.");
+    async all(orderBy?: CriteriaOrder<CustomerOrderByFields>): Promise<Customer[]> {
+        const values = [...this.customers.values()];
+        if(!orderBy) {
+            return values
         }
 
-        return [...this.customers.values()];
+        const { field, order } = orderBy
+
+        return values.sort((one, other) => {
+            const oneValue = (order === 'asc' ? `${one[field]}` : `${other[field]}`).toLowerCase();
+            const otherValue = (order === 'asc' ? `${other[field]}` : `${one[field]}`).toLowerCase();
+
+            if (oneValue < otherValue) {
+                return -1;
+            }
+            if (oneValue > otherValue) {
+                return 1;
+            }
+
+            return 0;
+        });
     }
 
     async delete(id: CustomerId): Promise<void> {
