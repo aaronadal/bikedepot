@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { AllCustomersHandler } from "@core/Shop/Customer/application/query/AllCustomersHandler";
 import { AllCustomersQuery } from "@core/Shop/Customer/application/query/AllCustomersQuery";
 import { CustomerView } from "@core/Shop/Customer/application/view/CustomerView";

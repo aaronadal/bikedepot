@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { EntityNotFoundError } from "@core/Shared/domain/error/EntityNotFoundError";
 import { GetCustomerHandler } from "@core/Shop/Customer/application/query/GetCustomerHandler";
 import { GetCustomerQuery } from "@core/Shop/Customer/application/query/GetCustomerQuery";

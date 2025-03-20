@@ -29,8 +29,13 @@ export class InMemoryCustomerRepository implements CustomerRepository {
         const { field, order } = orderBy
 
         return values.sort((one, other) => {
-            const oneValue = (order === 'asc' ? `${one[field]}` : `${other[field]}`).toLowerCase();
-            const otherValue = (order === 'asc' ? `${other[field]}` : `${one[field]}`).toLowerCase();
+            let oneValue = order === 'asc' ? one[field].value : other[field].value;
+            let otherValue = order === 'asc' ? other[field].value : one[field].value;
+
+            if(typeof oneValue === 'string' && typeof otherValue === 'string') {
+                oneValue = oneValue.toLowerCase()
+                otherValue = otherValue.toLowerCase()
+            }
 
             if (oneValue < otherValue) {
                 return -1;

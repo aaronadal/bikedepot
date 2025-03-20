@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { EventBusMocker } from "@test/mocker/core/Shared/domain/bus/event/EventBus.mocker";
 import { EntityNotFoundError } from "@core/Shared/domain/error/EntityNotFoundError";
 import { DeleteCustomerCommand } from "@core/Shop/Customer/application/command/DeleteCustomerCommand";

@@ -1,5 +1,6 @@
 import { Event } from "@core/Shared/domain/bus/event/Event";
 import { EventBus } from "@core/Shared/domain/bus/event/EventBus";
+import {TestEventBus} from "@core/Shared/infrastructure/bus/event/TestEventBus";
 
 export class EventBusMocker {
     private publishedCallsCount = 0;
@@ -21,17 +22,9 @@ export class EventBusMocker {
 
         const args = calls[currentCall]
 
-        const expected = this.getEventsData(events)
-        const actual = this.getEventsData(args[0])
+        const expected = TestEventBus.getEventsData(events)
+        const actual = TestEventBus.getEventsData(args[0])
 
         expect(actual).toMatchObject(expected)
-    }
-
-    private getEventsData(events: Event[]): any[] {
-        return events.map((event) => {
-            const { eventId, eventWhen, ...data } = event
-
-            return data;
-        });
     }
 }

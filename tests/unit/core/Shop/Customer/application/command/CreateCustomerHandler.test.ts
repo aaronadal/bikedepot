@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { CreateCustomerCommand } from "@core/Shop/Customer/application/command/CreateCustomerCommand";
 import { CreateCustomerHandler } from "@core/Shop/Customer/application/command/CreateCustomerHandler";
 import { CustomerCredit } from "@core/Shop/Customer/domain/entity/CustomerCredit";

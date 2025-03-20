@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { EntityNotFoundError } from "@core/Shared/domain/error/EntityNotFoundError";
 import { UpdateCustomerCommand } from "@core/Shop/Customer/application/command/UpdateCustomerCommand";
 import { UpdateCustomerHandler } from "@core/Shop/Customer/application/command/UpdateCustomerHandler";

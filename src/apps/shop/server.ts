@@ -1,6 +1,4 @@
 import {serve} from '@hono/node-server';
-import "reflect-metadata";
-import "./container";
 import {APP_CONFIG} from "@apps/shop/config";
 import {app} from "@apps/shop/app";
 

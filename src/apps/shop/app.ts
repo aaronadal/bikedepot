@@ -1,10 +1,10 @@
+import "reflect-metadata";
+import "./container";
 import {DomainError} from "@core/Shared/domain/error/DomainError";
 import {Hono} from 'hono';
 import {cors} from 'hono/cors';
 import {HTTPException} from "hono/http-exception";
 import {ContentfulStatusCode} from "hono/utils/http-status";
-import "reflect-metadata";
-import "./container";
 import {register as registerRoutes} from './routes';
 import {APP_CONFIG} from "@apps/shop/config";
 import {prettyJSON} from "hono/pretty-json";
