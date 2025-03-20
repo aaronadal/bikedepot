@@ -10,7 +10,7 @@ export class PrimitiveExtractor {
     ) {
     }
 
-    nonEmptyString(keys: string|string[]): string {
+    nonEmptyString(...keys: string[]): string {
         const [keyPath, value] = this.resolve(keys)
         
         if (typeof value !== 'string') {
@@ -24,16 +24,15 @@ export class PrimitiveExtractor {
         return value;
     }
 
-    private resolve(keys: string|string[]): [string, unknown] {
-        const keysArray = Array.isArray(keys) ? keys : [keys];
-        if (keysArray.length === 0) {
+    private resolve(keys: string[]): [string, unknown] {
+        if (keys.length === 0) {
             throw new InvalidArgumentError('At least one key is required');
         }
         
         let value: any = this.data;
         const keyPath: string[] = [];
         
-        for (const key of keysArray) {
+        for (const key of keys) {
             keyPath.push(key);
             
             if (value === undefined || value === null) {

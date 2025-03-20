@@ -1,5 +1,5 @@
 import { inject, singleton } from "tsyringe";
-import { QueryHandler } from "../../../../Shared/domain/bus/query/QueryHandler";
+import { QueryHandler } from "@core/Shared/domain/bus/query/QueryHandler";
 import { CustomerId } from "../../domain/entity/CustomerId";
 import { CustomerFinder } from "../../domain/persistence/CustomerFinder";
 import { CustomerRepository } from "../../domain/persistence/CustomerRepository";

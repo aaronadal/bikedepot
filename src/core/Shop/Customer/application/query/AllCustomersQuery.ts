@@ -1,5 +1,5 @@
-import { CriteriaOrder } from "../../../../Shared/domain/persistence/Criteria";
-import { Query } from "../../../../Shared/domain/bus/query/Query";
+import { CriteriaOrder } from "@core/Shared/domain/persistence/Criteria";
+import { Query } from "@core/Shared/domain/bus/query/Query";
 import { CustomerView } from "../view/CustomerView";
 import { CustomerOrderByFields } from "../../domain/persistence/CustomerRepository";
 

@@ -1,10 +1,10 @@
-import { inject, singleton } from "tsyringe";
-import { CommandHandler } from "../../../../Shared/domain/bus/command/CommandHandler";
-import { EventBus } from "../../../../Shared/domain/bus/event/EventBus";
-import { Customer } from "../../domain/entity/Customer";
-import { CustomerAddress } from "../../domain/entity/CustomerAddress";
-import { CustomerRepository } from "../../domain/persistence/CustomerRepository";
-import { CreateCustomerCommand } from "./CreateCustomerCommand";
+import {inject, singleton} from "tsyringe";
+import {CommandHandler} from "@core/Shared/domain/bus/command/CommandHandler";
+import {EventBus} from "@core/Shared/domain/bus/event/EventBus";
+import {Customer} from "../../domain/entity/Customer";
+import {CustomerAddress} from "../../domain/entity/CustomerAddress";
+import {CustomerRepository} from "../../domain/persistence/CustomerRepository";
+import {CreateCustomerCommand} from "./CreateCustomerCommand";
 
 @singleton()
 export class CreateCustomerHandler implements CommandHandler<CreateCustomerCommand> {

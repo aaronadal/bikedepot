@@ -1,4 +1,4 @@
-import { Query } from "../../../../Shared/domain/bus/query/Query";
+import { Query } from "@core/Shared/domain/bus/query/Query";
 import { CustomerView } from "../view/CustomerView";
 
 export class GetCustomerQuery implements Query<CustomerView> {

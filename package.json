@@ -17,7 +17,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "hono": "^4.7.4",
-    "mongoose": "^8.12.1",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "uuid": "^11.1.0"
@@ -33,7 +32,6 @@
     "nodemon": "^3.1.9",
     "serverless": "^3.38.0",
     "serverless-offline": "^13.3.3",
-    "supertest": "^7.0.0",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

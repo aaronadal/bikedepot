@@ -1,8 +1,8 @@
-import { singleton } from "tsyringe";
-import { CriteriaOrder } from "../../../../Shared/domain/persistence/Criteria";
-import { Customer } from "../../domain/entity/Customer";
-import { CustomerId } from "../../domain/entity/CustomerId";
-import { CustomerOrderByFields, CustomerRepository } from "../../domain/persistence/CustomerRepository";
+import {singleton} from "tsyringe";
+import {CriteriaOrder} from "@core/Shared/domain/persistence/Criteria";
+import {Customer} from "@core/Shop/Customer/domain/entity/Customer";
+import {CustomerOrderByFields, CustomerRepository} from "@core/Shop/Customer/domain/persistence/CustomerRepository";
+import {CustomerId} from "@core/Shop/Customer/domain/entity/CustomerId";
 
 @singleton()
 export class InMemoryCustomerRepository implements CustomerRepository {

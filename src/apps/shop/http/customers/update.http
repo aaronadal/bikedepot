@@ -1,0 +1,11 @@
+PUT {{ host }}/customers/ef8453da-e7a4-4c2b-8ab0-f9a4ad86abff
+
+{
+    "name": "Aarón Nadal Bosch",
+    "email": "aaronadal@gmail.com",
+    "address": {
+        "address": "Calle 2",
+        "city": "Alcora",
+        "postalCode": "12345"
+    }
+}

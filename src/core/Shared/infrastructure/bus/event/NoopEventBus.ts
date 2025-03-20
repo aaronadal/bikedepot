@@ -7,6 +7,6 @@ export class NoopEventBus implements EventBus {
     async publish(events: Event[]): Promise<void> {
         const names = events.map((e) => e.eventName);
 
-        console.log(`Published ${names.length} events:\n    ${names.join('\n    ')}`)
+        console.log(`\nPublished ${names.length} events:\n    ${names.join('\n    ')}\n`)
     }
 }

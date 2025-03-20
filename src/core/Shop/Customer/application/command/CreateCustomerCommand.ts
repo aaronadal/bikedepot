@@ -1,4 +1,4 @@
-import { Command } from "../../../../Shared/domain/bus/command/Command";
+import { Command } from "@core/Shared/domain/bus/command/Command";
 import { CustomerAddressAddress } from "../../domain/entity/CustomerAddressAddress";
 import { CustomerAddressCity } from "../../domain/entity/CustomerAddressCity";
 import { CustomerAddressPostalCode } from "../../domain/entity/CustomerAddressPostalCode";

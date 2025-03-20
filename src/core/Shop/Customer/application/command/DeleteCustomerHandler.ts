@@ -1,6 +1,6 @@
 import { inject, singleton } from "tsyringe";
-import { CommandHandler } from "../../../../Shared/domain/bus/command/CommandHandler";
-import { EventBus } from "../../../../Shared/domain/bus/event/EventBus";
+import { CommandHandler } from "@core/Shared/domain/bus/command/CommandHandler";
+import { EventBus } from "@core/Shared/domain/bus/event/EventBus";
 import { CustomerFinder } from "../../domain/persistence/CustomerFinder";
 import { CustomerRepository } from "../../domain/persistence/CustomerRepository";
 import { DeleteCustomerCommand } from "./DeleteCustomerCommand";

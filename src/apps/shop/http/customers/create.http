@@ -1,0 +1,11 @@
+POST {{ host }}/customers
+
+{
+    "name": "Aarón Nadal",
+    "email": "aaronadal.dev@gmail.com",
+    "address": {
+        "address": "Calle",
+        "city": "Alcora",
+        "postalCode": "12345"
+    }
+}
