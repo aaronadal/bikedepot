@@ -24,6 +24,16 @@ export class PrimitiveExtractor {
         return value;
     }
 
+    integer(...keys: string[]): number {
+        const [keyPath, value] = this.resolve(keys)
+
+        if (typeof value !== 'number' || !Number.isInteger(value)) {
+            throw new InvalidArgumentError(`Value at <${keyPath}> is not an integer`);
+        }
+
+        return value;
+    }
+
     private resolve(keys: string[]): [string, unknown] {
         if (keys.length === 0) {
             throw new InvalidArgumentError('At least one key is required');

@@ -1,4 +1,4 @@
-import { CriteriaOrder } from '../../../../Shared/domain/persistence/Criteria';
+import { CriteriaOrder } from '@core/Shared/domain/persistence/Criteria';
 import { Customer } from '../entity/Customer';
 import { CustomerId } from '../entity/CustomerId';
 

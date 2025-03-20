@@ -2,7 +2,7 @@ import { CustomerId } from './CustomerId';
 import { CustomerName } from './CustomerName';
 import { CustomerEmail } from './CustomerEmail';
 import { CustomerAddress } from './CustomerAddress';
-import { AggregateRoot } from '../../../../Shared/domain/entity/AggregateRoot';
+import { AggregateRoot } from '@core/Shared/domain/entity/AggregateRoot';
 import { CustomerCreated } from '../event/CustomerCreated';
 import { CustomerCredit } from './CustomerCredit';
 import { CustomerDeleted } from '../event/CustomerDeleted';
@@ -10,6 +10,7 @@ import { CustomerNameChanged } from '../event/CustomerNameChanged';
 import { CustomerEmailChanged } from '../event/CustomerEmailChanged';
 import { CustomerAddressChanged } from '../event/CustomerAddressChanged';
 import { CustomerUpdated } from '../event/CustomerUpdated';
+import {CustomerCreditChanged} from "@core/Shop/Customer/domain/event/CustomerCreditChanged";
 
 export class Customer extends AggregateRoot {
   static create(
@@ -44,7 +45,7 @@ export class Customer extends AggregateRoot {
     private _name: CustomerName,
     private _email: CustomerEmail,
     private _address: CustomerAddress,
-    private readonly _credit: CustomerCredit,
+    private _credit: CustomerCredit,
   ) {
     super();
   }
@@ -117,6 +118,21 @@ export class Customer extends AggregateRoot {
 
   get credit(): CustomerCredit {
     return this._credit;
+  }
+
+  set credit(credit: CustomerCredit) {
+    if(this._credit.equals(credit)) {
+      return;
+    }
+
+    this._credit = credit
+
+    this.record(
+        new CustomerCreditChanged({
+          entityId: this.id.value,
+          credit: this.credit.value,
+        }),
+    )
   }
   
   updated() {

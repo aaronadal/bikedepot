@@ -23,8 +23,9 @@ export class DeleteCustomerHandler implements CommandHandler<DeleteCustomerComma
     async handle(command: DeleteCustomerCommand) {
         const customer = await this.finder.invoke(command.id);
 
-        await this.repo.delete(customer.id);
         customer.deleted();
+
+        await this.repo.delete(customer.id);
 
         await this.bus.publish(customer.pullEvents());
     }

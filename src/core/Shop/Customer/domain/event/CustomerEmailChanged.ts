@@ -1,4 +1,4 @@
-import { Event, type EventBody } from '../../../../Shared/domain/bus/event/Event';
+import { Event, type EventBody } from '@core/Shared/domain/bus/event/Event';
 
 export type CustomerEmailChangedBody = {
   readonly entityId: string;

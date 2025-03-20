@@ -1,4 +1,4 @@
-import { EntityNotFoundError } from "../../../../Shared/domain/error/EntityNotFoundError";
+import { EntityNotFoundError } from "@core/Shared/domain/error/EntityNotFoundError";
 import { Customer } from "../entity/Customer";
 import { CustomerId } from "../entity/CustomerId";
 import { CustomerRepository } from "./CustomerRepository";

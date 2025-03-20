@@ -5,12 +5,14 @@ import {AllCustomersHandler} from "@core/Shop/Customer/application/query/AllCust
 import {GetCustomerHandler} from "@core/Shop/Customer/application/query/GetCustomerHandler";
 import {InMemoryCustomerRepository} from "@core/Shop/Customer/infrastructure/persistence/InMemoryCustomerRepository";
 import {container, Lifecycle} from "tsyringe";
+import {SetCreditHandler} from "@core/Shop/Customer/application/command/SetCreditHandler";
 
 container.register('CustomerRepository', { useClass: InMemoryCustomerRepository }, { lifecycle: Lifecycle.Singleton })
 
 container.register('CommandHandler', CreateCustomerHandler)
 container.register('CommandHandler', DeleteCustomerHandler)
 container.register('CommandHandler', UpdateCustomerHandler)
+container.register('CommandHandler', SetCreditHandler)
 
 container.register('QueryHandler', GetCustomerHandler)
 container.register('QueryHandler', AllCustomersHandler)

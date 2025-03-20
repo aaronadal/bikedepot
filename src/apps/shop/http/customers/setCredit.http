@@ -1,0 +1,5 @@
+PUT {{ host }}/customers-credit/31e7cafb-0d0a-4034-9fd1-2dd70478f5d1
+
+{
+    "credit": 800
+}

@@ -1,4 +1,4 @@
-import { PositiveNumberValueObject } from '../../../../Shared/domain/entity/PositiveNumberValueObject';
+import { PositiveNumberValueObject } from '@core/Shared/domain/entity/PositiveNumberValueObject';
 
 export class CustomerCredit extends PositiveNumberValueObject {
   public static fromValue(value: number): CustomerCredit {
