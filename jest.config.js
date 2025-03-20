@@ -8,6 +8,13 @@ module.exports = {
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@core/(.*)$': '<rootDir>/src/core/$1',
+    '^@test/(.*)$': '<rootDir>/tests/$1',
+    '^@apps/(.*)$': '<rootDir>/src/apps/$1'
+  },
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      tsconfig: 'tsconfig.json'
+    }]
   }
 };
