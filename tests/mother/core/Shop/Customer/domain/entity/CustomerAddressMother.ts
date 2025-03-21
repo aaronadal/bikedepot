@@ -7,17 +7,21 @@ import { CustomerAddressCityMother } from "./CustomerAddressCityMother";
 import { CustomerAddressPostalCodeMother } from "./CustomerAddressPostalCodeMother";
 
 type CreateArgs = {
-    address?: CustomerAddressAddress,
-    city?: CustomerAddressCity,
-    postalCode?: CustomerAddressPostalCode,
-}
+  address?: CustomerAddressAddress;
+  city?: CustomerAddressCity;
+  postalCode?: CustomerAddressPostalCode;
+};
 
 export class CustomerAddressMother {
-    static create({ address, city, postalCode }: CreateArgs = {}): CustomerAddress {
-        return CustomerAddress.create(
-            address || CustomerAddressAddressMother.random(),
-            city || CustomerAddressCityMother.random(),
-            postalCode || CustomerAddressPostalCodeMother.random(),
-        )
-    }
+  static create({
+    address,
+    city,
+    postalCode,
+  }: CreateArgs = {}): CustomerAddress {
+    return CustomerAddress.create(
+      address || CustomerAddressAddressMother.random(),
+      city || CustomerAddressCityMother.random(),
+      postalCode || CustomerAddressPostalCodeMother.random(),
+    );
+  }
 }

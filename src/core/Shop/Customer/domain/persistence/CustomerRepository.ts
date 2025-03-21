@@ -1,8 +1,8 @@
-import { CriteriaOrder } from '@core/Shared/domain/persistence/Criteria';
-import { Customer } from '../entity/Customer';
-import { CustomerId } from '../entity/CustomerId';
+import { CriteriaOrder } from "@core/Shared/domain/persistence/Criteria";
+import { Customer } from "../entity/Customer";
+import { CustomerId } from "../entity/CustomerId";
 
-export type CustomerOrderByFields = 'name'|'credit'
+export type CustomerOrderByFields = "name" | "credit";
 
 export interface CustomerRepository {
   save(customer: Customer): Promise<void>;

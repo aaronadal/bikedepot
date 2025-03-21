@@ -15,81 +15,81 @@ import { CustomerEmailMother } from "@test/mother/core/Shop/Customer/domain/enti
 import { CustomerMother } from "@test/mother/core/Shop/Customer/domain/entity/CustomerMother";
 import { CustomerNameMother } from "@test/mother/core/Shop/Customer/domain/entity/CustomerNameMother";
 
-describe('UpdateCustomerHandler', () => {
-    let repo: CustomerRepositoryMocker;
-    let bus: EventBusMocker;
-    let handler: UpdateCustomerHandler;
+describe("UpdateCustomerHandler", () => {
+  let repo: CustomerRepositoryMocker;
+  let bus: EventBusMocker;
+  let handler: UpdateCustomerHandler;
 
-    beforeEach(() => {
-        repo = new CustomerRepositoryMocker()
-        bus = new EventBusMocker()
+  beforeEach(() => {
+    repo = new CustomerRepositoryMocker();
+    bus = new EventBusMocker();
 
-        handler = new UpdateCustomerHandler(repo.mock, bus.mock)
-    })
+    handler = new UpdateCustomerHandler(repo.mock, bus.mock);
+  });
 
-    it('should support the command', async() => {
-        expect(handler.supports()).toBe(UpdateCustomerCommand);
-    });
+  it("should support the command", async () => {
+    expect(handler.supports()).toBe(UpdateCustomerCommand);
+  });
 
-    it('should update the customer successfully', async() => {
-        const customer = CustomerMother.create();
-        const command = new UpdateCustomerCommand(
-            customer.id,
-            CustomerNameMother.different(customer.name),
-            CustomerEmailMother.different(customer.email),
-            CustomerAddressAddressMother.different(customer.address.address),
-            CustomerAddressCityMother.different(customer.address.city),
-            CustomerAddressPostalCodeMother.different(customer.address.postalCode),
-        );
+  it("should update the customer successfully", async () => {
+    const customer = CustomerMother.create();
+    const command = new UpdateCustomerCommand(
+      customer.id,
+      CustomerNameMother.different(customer.name),
+      CustomerEmailMother.different(customer.email),
+      CustomerAddressAddressMother.different(customer.address.address),
+      CustomerAddressCityMother.different(customer.address.city),
+      CustomerAddressPostalCodeMother.different(customer.address.postalCode),
+    );
 
-        repo.found(customer)
+    repo.found(customer);
 
-        await handler.handle(command)
+    await handler.handle(command);
 
-        repo.assertSaved(customer)
-        bus.assertPublished([
-            new CustomerNameChanged({
-                entityId: command.id.value,
-                name: command.name.value,
-            }),
-            new CustomerEmailChanged({
-                entityId: command.id.value,
-                email: command.email.value,
-            }),
-            new CustomerAddressChanged({
-                entityId: command.id.value,
-                address: command.address.value,
-                city: command.city.value,
-                postalCode: command.postalCode.value,
-            }),
-            new CustomerUpdated({
-                entityId: customer.id.value,
-                name: customer.name.value,
-                email: customer.email.value,
-                address: {
-                    address: customer.address.address.value,
-                    city: customer.address.city.value,
-                    postalCode: customer.address.postalCode.value,
-                }
-            })
-        ])
-    })
+    repo.assertSaved(customer);
+    bus.assertPublished([
+      new CustomerNameChanged({
+        entityId: command.id.value,
+        name: command.name.value,
+      }),
+      new CustomerEmailChanged({
+        entityId: command.id.value,
+        email: command.email.value,
+      }),
+      new CustomerAddressChanged({
+        entityId: command.id.value,
+        address: command.address.value,
+        city: command.city.value,
+        postalCode: command.postalCode.value,
+      }),
+      new CustomerUpdated({
+        entityId: customer.id.value,
+        name: customer.name.value,
+        email: customer.email.value,
+        address: {
+          address: customer.address.address.value,
+          city: customer.address.city.value,
+          postalCode: customer.address.postalCode.value,
+        },
+      }),
+    ]);
+  });
 
-    it('should fail if Customer not found', async() => {
-        const customer = CustomerMother.create();
-        const command = new UpdateCustomerCommand(
-            customer.id,
-            customer.name,
-            customer.email,
-            customer.address.address,
-            customer.address.city,
-            customer.address.postalCode,
-        );
+  it("should fail if Customer not found", async () => {
+    const customer = CustomerMother.create();
+    const command = new UpdateCustomerCommand(
+      customer.id,
+      customer.name,
+      customer.email,
+      customer.address.address,
+      customer.address.city,
+      customer.address.postalCode,
+    );
 
-        repo.notFound()
+    repo.notFound();
 
-        await expect(async () => {
-            await handler.handle(command)
-        }).rejects.toThrow(EntityNotFoundError)
-    })
+    await expect(async () => {
+      await handler.handle(command);
+    }).rejects.toThrow(EntityNotFoundError);
+  });
 });

@@ -1,4 +1,4 @@
-import { StringValueObject } from '@core/Shared/domain/entity/StringValueObject';
+import { StringValueObject } from "@core/Shared/domain/entity/StringValueObject";
 
 export class CustomerName extends StringValueObject {
   private static ALLOWS_EMPTY = false;

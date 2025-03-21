@@ -15,24 +15,25 @@ export class CustomerAddress {
     private readonly _address: CustomerAddressAddress,
     private readonly _city: CustomerAddressCity,
     private readonly _postalCode: CustomerAddressPostalCode,
-  ) {
-  }
+  ) {}
 
   get address(): CustomerAddressAddress {
-    return this._address
+    return this._address;
   }
 
   get city(): CustomerAddressCity {
-    return this._city
+    return this._city;
   }
 
   get postalCode(): CustomerAddressPostalCode {
-    return this._postalCode
+    return this._postalCode;
   }
 
   equals(other: CustomerAddress): boolean {
-    return this.address.equals(other.address)
-      && this.city.equals(other.city)
-      && this.postalCode.equals(other.postalCode);
+    return (
+      this.address.equals(other.address) &&
+      this.city.equals(other.city) &&
+      this.postalCode.equals(other.postalCode)
+    );
   }
 }

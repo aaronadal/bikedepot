@@ -1,5 +1,5 @@
-import { Event } from '../bus/event/Event';
-import { UuidValueObject } from './UuidValueObject';
+import { Event } from "../bus/event/Event";
+import { UuidValueObject } from "./UuidValueObject";
 
 export abstract class AggregateRoot {
   private events: Event[] = [];

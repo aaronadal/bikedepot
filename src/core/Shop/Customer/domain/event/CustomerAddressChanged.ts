@@ -1,4 +1,4 @@
-import { Event, type EventBody } from '@core/Shared/domain/bus/event/Event';
+import { Event, type EventBody } from "@core/Shared/domain/bus/event/Event";
 
 export type CustomerAddressChangedBody = {
   readonly entityId: string;
@@ -8,22 +8,20 @@ export type CustomerAddressChangedBody = {
 };
 
 export class CustomerAddressChanged extends Event {
-  static readonly EVENT_NAME = 'shop.customer.addres_changed';
+  static readonly EVENT_NAME = "shop.customer.addres_changed";
 
   readonly address: string;
   readonly city: string;
   readonly postalCode: string;
 
-  constructor(
-    {
-      eventId,
-      eventWhen,
-      entityId,
-      address,
-      city,
-      postalCode,
-    }: Partial<EventBody> & CustomerAddressChangedBody
-  ) {
+  constructor({
+    eventId,
+    eventWhen,
+    entityId,
+    address,
+    city,
+    postalCode,
+  }: Partial<EventBody> & CustomerAddressChangedBody) {
     super(CustomerAddressChanged.EVENT_NAME, entityId, eventId, eventWhen);
 
     this.address = address;

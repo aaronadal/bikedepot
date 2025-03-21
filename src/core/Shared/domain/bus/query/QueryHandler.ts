@@ -1,6 +1,6 @@
-import { Query } from './Query';
+import { Query } from "./Query";
 
 export interface QueryHandler<Q extends Query<T>, T> {
-  supports(): Function;
+  supports(): new (...args: any[]) => Query<Q>;
   handle(query: Q): Promise<T>;
 }

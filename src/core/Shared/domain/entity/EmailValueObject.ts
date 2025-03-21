@@ -2,7 +2,7 @@ import { InvalidArgumentError } from "../error/InvalidArgumentError";
 import { StringValueObject } from "./StringValueObject";
 
 export abstract class EmailValueObject extends StringValueObject {
-  private static REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+  private static REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
   private static ALLOWS_EMPTY = false;
   private static MAX_LENGTH = 255;
@@ -13,9 +13,11 @@ export abstract class EmailValueObject extends StringValueObject {
 
   protected ensureIsValid(value: string): string {
     value = super.ensureIsValid(value);
-    
+
     if (!EmailValueObject.REGEX.test(value)) {
-      throw new InvalidArgumentError(`<${this.constructor.name}> requires a valid email string, <${value}> provided`);
+      throw new InvalidArgumentError(
+        `<${this.constructor.name}> requires a valid email string, <${value}> provided`,
+      );
     }
 
     return value;

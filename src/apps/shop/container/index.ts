@@ -1,2 +1,2 @@
-import './Shared'
-import './Shop/Customer'
+import "./Shared";
+import "./Shop/Customer";

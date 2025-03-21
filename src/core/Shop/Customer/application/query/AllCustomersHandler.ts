@@ -5,19 +5,20 @@ import { CustomerView } from "../view/CustomerView";
 import { AllCustomersQuery } from "./AllCustomersQuery";
 
 @singleton()
-export class AllCustomersHandler implements QueryHandler<AllCustomersQuery, CustomerView[]> {
-    constructor(
-        @inject('CustomerRepository') private readonly repo: CustomerRepository,
-    ) {
-    }
+export class AllCustomersHandler
+  implements QueryHandler<AllCustomersQuery, CustomerView[]>
+{
+  constructor(
+    @inject("CustomerRepository") private readonly repo: CustomerRepository,
+  ) {}
 
-    supports() {
-        return AllCustomersQuery;
-    }
+  supports() {
+    return AllCustomersQuery;
+  }
 
-    async handle(query: AllCustomersQuery) {
-        const customers = await this.repo.all(query.orderBy)
+  async handle(query: AllCustomersQuery) {
+    const customers = await this.repo.all(query.orderBy);
 
-        return customers.map((customer) => CustomerView.fromCustomer(customer))
-    }
+    return customers.map((customer) => CustomerView.fromCustomer(customer));
+  }
 }

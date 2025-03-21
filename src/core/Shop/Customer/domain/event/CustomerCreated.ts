@@ -1,4 +1,4 @@
-import { Event, type EventBody } from '@core/Shared/domain/bus/event/Event';
+import { Event, type EventBody } from "@core/Shared/domain/bus/event/Event";
 
 export type CustomerCreatedAddressBody = {
   readonly address: string;
@@ -14,22 +14,20 @@ export type CustomerCreatedBody = {
 };
 
 export class CustomerCreated extends Event {
-  static readonly EVENT_NAME = 'shop.customer.created';
+  static readonly EVENT_NAME = "shop.customer.created";
 
   readonly name: string;
   readonly email: string;
   readonly address: CustomerCreatedAddressBody;
 
-  constructor(
-    {
-      eventId,
-      eventWhen,
-      entityId,
-      name,
-      email,
-      address,
-    }: Partial<EventBody> & CustomerCreatedBody
-  ) {
+  constructor({
+    eventId,
+    eventWhen,
+    entityId,
+    name,
+    email,
+    address,
+  }: Partial<EventBody> & CustomerCreatedBody) {
     super(CustomerCreated.EVENT_NAME, entityId, eventId, eventWhen);
 
     this.name = name;

@@ -6,25 +6,27 @@ import { CustomerRepositoryMocker } from "@test/mocker/core/Shop/Customer/domain
 import { MultipleMother } from "@test/mother/core/Shared/domain/MultipleMother";
 import { CustomerMother } from "@test/mother/core/Shop/Customer/domain/entity/CustomerMother";
 
-describe('AllCustomersHandler', () => {
-    let repo: CustomerRepositoryMocker
-    let handler: AllCustomersHandler
+describe("AllCustomersHandler", () => {
+  let repo: CustomerRepositoryMocker;
+  let handler: AllCustomersHandler;
 
-    beforeEach(() => {
-        repo = new CustomerRepositoryMocker()
-        handler = new AllCustomersHandler(repo.mock)
-    })
+  beforeEach(() => {
+    repo = new CustomerRepositoryMocker();
+    handler = new AllCustomersHandler(repo.mock);
+  });
 
-    it('should return the views successfully', async () => {
-        const customers = MultipleMother.random(() => CustomerMother.create())
-        const views = customers.map((customer) => CustomerView.fromCustomer(customer))
-        const query = new AllCustomersQuery()
+  it("should return the views successfully", async () => {
+    const customers = MultipleMother.random(() => CustomerMother.create());
+    const views = customers.map((customer) =>
+      CustomerView.fromCustomer(customer),
+    );
+    const query = new AllCustomersQuery();
 
-        repo.all(customers)
+    repo.all(customers);
 
-        const view = await handler.handle(query)
+    const view = await handler.handle(query);
 
-        repo.assertAll(query.orderBy)
-        expect(view).toMatchObject(views)
-    })
-})
+    repo.assertAll(query.orderBy);
+    expect(view).toMatchObject(views);
+  });
+});

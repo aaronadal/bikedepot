@@ -7,17 +7,21 @@ export abstract class StringValueObject extends ValueObject<string> {
     private readonly allowsEmpty: boolean,
     private readonly maxLength: number,
   ) {
-    super(value)
+    super(value);
   }
 
   protected ensureIsValid(value: string): string {
     value = value.trim();
-    if(value === '' && !this.allowsEmpty) {
-      throw new InvalidArgumentError(`<${this.constructor.name}> requires a non-empty string, <${value}> provided`);
+    if (value === "" && !this.allowsEmpty) {
+      throw new InvalidArgumentError(
+        `<${this.constructor.name}> requires a non-empty string, <${value}> provided`,
+      );
     }
-    
+
     if (value.length > this.maxLength) {
-      throw new InvalidArgumentError(`<${this.constructor.name}> address cannot be longer than ${this.maxLength} characters, <${value.length}> provided`);
+      throw new InvalidArgumentError(
+        `<${this.constructor.name}> address cannot be longer than ${this.maxLength} characters, <${value.length}> provided`,
+      );
     }
 
     return value;

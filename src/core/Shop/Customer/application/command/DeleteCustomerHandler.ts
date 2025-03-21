@@ -6,27 +6,29 @@ import { CustomerRepository } from "../../domain/persistence/CustomerRepository"
 import { DeleteCustomerCommand } from "./DeleteCustomerCommand";
 
 @singleton()
-export class DeleteCustomerHandler implements CommandHandler<DeleteCustomerCommand> {
-    private readonly finder: CustomerFinder;
+export class DeleteCustomerHandler
+  implements CommandHandler<DeleteCustomerCommand>
+{
+  private readonly finder: CustomerFinder;
 
-    constructor(
-        @inject('CustomerRepository') private readonly repo: CustomerRepository,
-        @inject('EventBus') private readonly bus: EventBus,
-    ) {
-        this.finder = new CustomerFinder(repo);
-    }
+  constructor(
+    @inject("CustomerRepository") private readonly repo: CustomerRepository,
+    @inject("EventBus") private readonly bus: EventBus,
+  ) {
+    this.finder = new CustomerFinder(repo);
+  }
 
-    supports() {
-        return DeleteCustomerCommand;
-    }
+  supports() {
+    return DeleteCustomerCommand;
+  }
 
-    async handle(command: DeleteCustomerCommand) {
-        const customer = await this.finder.invoke(command.id);
+  async handle(command: DeleteCustomerCommand) {
+    const customer = await this.finder.invoke(command.id);
 
-        customer.deleted();
+    customer.deleted();
 
-        await this.repo.delete(customer.id);
+    await this.repo.delete(customer.id);
 
-        await this.bus.publish(customer.pullEvents());
-    }
+    await this.bus.publish(customer.pullEvents());
+  }
 }

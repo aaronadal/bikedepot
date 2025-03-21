@@ -6,14 +6,13 @@ import { inject, singleton } from "tsyringe";
 
 @singleton()
 export class ListController {
-    constructor(
-        @inject("QueryBus") private readonly bus: QueryBus
-    ) {
-    }
+  constructor(@inject("QueryBus") private readonly bus: QueryBus) {}
 
-    async invoke(c: Context) {
-        const result = await this.bus.ask<CustomerView[]>(new AllCustomersQuery({ field: 'credit', order: 'desc' }))
+  async invoke(c: Context) {
+    const result = await this.bus.ask<CustomerView[]>(
+      new AllCustomersQuery({ field: "credit", order: "desc" }),
+    );
 
-        return c.json(result)
-    }
+    return c.json(result);
+  }
 }

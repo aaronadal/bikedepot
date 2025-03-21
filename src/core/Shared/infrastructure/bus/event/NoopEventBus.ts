@@ -1,12 +1,14 @@
-import { Event } from '@core/Shared/domain/bus/event/Event';
-import { EventBus } from '@core/Shared/domain/bus/event/EventBus';
-import { singleton } from 'tsyringe';
+import { Event } from "@core/Shared/domain/bus/event/Event";
+import { EventBus } from "@core/Shared/domain/bus/event/EventBus";
+import { singleton } from "tsyringe";
 
 @singleton()
 export class NoopEventBus implements EventBus {
-    async publish(events: Event[]): Promise<void> {
-        const names = events.map((e) => e.eventName);
+  async publish(events: Event[]): Promise<void> {
+    const names = events.map((e) => e.eventName);
 
-        console.log(`\nPublished ${names.length} events:\n    ${names.join('\n    ')}\n`)
-    }
+    console.log(
+      `\nPublished ${names.length} events:\n    ${names.join("\n    ")}\n`,
+    );
+  }
 }

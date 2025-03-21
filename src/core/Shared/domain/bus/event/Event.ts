@@ -2,10 +2,10 @@ import { UuidValueObject } from "../../entity/UuidValueObject";
 import { TimestampProvider } from "../../TimestampProvider";
 
 export type EventBody = {
-  eventId: string,
-  eventWhen: number,
-  entityId: string,
-}
+  eventId: string;
+  eventWhen: number;
+  entityId: string;
+};
 
 export abstract class Event {
   public static EVENT_NAME: string;
@@ -19,8 +19,8 @@ export abstract class Event {
     eventId?: string,
     eventWhen?: number,
   ) {
-    this.eventId = eventId || UuidValueObject.randomUuid()
-    this.eventWhen = eventWhen || TimestampProvider.now()
+    this.eventId = eventId || UuidValueObject.randomUuid();
+    this.eventWhen = eventWhen || TimestampProvider.now();
   }
 
   abstract toPrimitives(): EventBody & Record<string, any>;

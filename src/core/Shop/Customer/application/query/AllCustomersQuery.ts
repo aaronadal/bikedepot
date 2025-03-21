@@ -4,7 +4,5 @@ import { CustomerView } from "../view/CustomerView";
 import { CustomerOrderByFields } from "../../domain/persistence/CustomerRepository";
 
 export class AllCustomersQuery implements Query<CustomerView[]> {
-    constructor(
-        readonly orderBy?: CriteriaOrder<CustomerOrderByFields>,
-    ) {}
+  constructor(readonly orderBy?: CriteriaOrder<CustomerOrderByFields>) {}
 }

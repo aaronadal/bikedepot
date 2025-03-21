@@ -7,12 +7,12 @@ import { CustomerId } from "../../domain/entity/CustomerId";
 import { CustomerName } from "../../domain/entity/CustomerName";
 
 export class CreateCustomerCommand implements Command {
-    constructor(
-        public readonly id: CustomerId,
-        public readonly name: CustomerName,
-        public readonly email: CustomerEmail,
-        public readonly address: CustomerAddressAddress,
-        public readonly city: CustomerAddressCity,
-        public readonly postalCode: CustomerAddressPostalCode,
-    ) {}
+  constructor(
+    public readonly id: CustomerId,
+    public readonly name: CustomerName,
+    public readonly email: CustomerEmail,
+    public readonly address: CustomerAddressAddress,
+    public readonly city: CustomerAddressCity,
+    public readonly postalCode: CustomerAddressPostalCode,
+  ) {}
 }

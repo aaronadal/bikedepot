@@ -2,19 +2,17 @@ import { CustomerAddressCity } from "@core/Shop/Customer/domain/entity/CustomerA
 import { WordMother } from "../../../../Shared/domain/WordMother";
 
 export class CustomerAddressCityMother {
-    static random(): CustomerAddressCity {
-        return CustomerAddressCity.fromValue(
-            WordMother.random()
-        )
-    }
+  static random(): CustomerAddressCity {
+    return CustomerAddressCity.fromValue(WordMother.random());
+  }
 
-    static different(reference: CustomerAddressCity): CustomerAddressCity {
-        let different: CustomerAddressCity;
+  static different(reference: CustomerAddressCity): CustomerAddressCity {
+    let different: CustomerAddressCity;
 
-        do {
-            different = CustomerAddressCityMother.random()
-        } while(reference.equals(different));
+    do {
+      different = CustomerAddressCityMother.random();
+    } while (reference.equals(different));
 
-        return different;
-    }
+    return different;
+  }
 }

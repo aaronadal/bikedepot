@@ -2,10 +2,10 @@ POST {{ host }}/customers
 
 {
     "name": "Aarón Nadal",
-    "email": "aaronadal.dev@gmail.com",
+    "email": "email@demo.com",
     "address": {
-        "address": "Calle",
-        "city": "Alcora",
+        "address": "Main Street, 6",
+        "city": "New London",
         "postalCode": "12345"
     }
 }

@@ -1,4 +1,4 @@
-import { UuidValueObject } from '@core/Shared/domain/entity/UuidValueObject';
+import { UuidValueObject } from "@core/Shared/domain/entity/UuidValueObject";
 
 export class CustomerId extends UuidValueObject {
   public static fromValue(value: string): CustomerId {

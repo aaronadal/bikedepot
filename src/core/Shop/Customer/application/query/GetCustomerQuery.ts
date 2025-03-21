@@ -2,7 +2,5 @@ import { Query } from "@core/Shared/domain/bus/query/Query";
 import { CustomerView } from "../view/CustomerView";
 
 export class GetCustomerQuery implements Query<CustomerView> {
-    constructor(
-        public readonly id: string,
-    ) {}
+  constructor(public readonly id: string) {}
 }

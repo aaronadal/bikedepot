@@ -1,4 +1,4 @@
-import { StringValueObject } from '@core/Shared/domain/entity/StringValueObject';
+import { StringValueObject } from "@core/Shared/domain/entity/StringValueObject";
 
 export class CustomerAddressAddress extends StringValueObject {
   private static ALLOWS_EMPTY = false;
@@ -9,6 +9,10 @@ export class CustomerAddressAddress extends StringValueObject {
   }
 
   protected constructor(value: string) {
-    super(value, CustomerAddressAddress.ALLOWS_EMPTY, CustomerAddressAddress.MAX_LENGTH);
+    super(
+      value,
+      CustomerAddressAddress.ALLOWS_EMPTY,
+      CustomerAddressAddress.MAX_LENGTH,
+    );
   }
 }

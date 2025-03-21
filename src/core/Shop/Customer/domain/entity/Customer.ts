@@ -1,16 +1,16 @@
-import { CustomerId } from './CustomerId';
-import { CustomerName } from './CustomerName';
-import { CustomerEmail } from './CustomerEmail';
-import { CustomerAddress } from './CustomerAddress';
-import { AggregateRoot } from '@core/Shared/domain/entity/AggregateRoot';
-import { CustomerCreated } from '../event/CustomerCreated';
-import { CustomerCredit } from './CustomerCredit';
-import { CustomerDeleted } from '../event/CustomerDeleted';
-import { CustomerNameChanged } from '../event/CustomerNameChanged';
-import { CustomerEmailChanged } from '../event/CustomerEmailChanged';
-import { CustomerAddressChanged } from '../event/CustomerAddressChanged';
-import { CustomerUpdated } from '../event/CustomerUpdated';
-import {CustomerCreditChanged} from "@core/Shop/Customer/domain/event/CustomerCreditChanged";
+import { CustomerId } from "./CustomerId";
+import { CustomerName } from "./CustomerName";
+import { CustomerEmail } from "./CustomerEmail";
+import { CustomerAddress } from "./CustomerAddress";
+import { AggregateRoot } from "@core/Shared/domain/entity/AggregateRoot";
+import { CustomerCreated } from "../event/CustomerCreated";
+import { CustomerCredit } from "./CustomerCredit";
+import { CustomerDeleted } from "../event/CustomerDeleted";
+import { CustomerNameChanged } from "../event/CustomerNameChanged";
+import { CustomerEmailChanged } from "../event/CustomerEmailChanged";
+import { CustomerAddressChanged } from "../event/CustomerAddressChanged";
+import { CustomerUpdated } from "../event/CustomerUpdated";
+import { CustomerCreditChanged } from "@core/Shop/Customer/domain/event/CustomerCreditChanged";
 
 export class Customer extends AggregateRoot {
   static create(
@@ -19,7 +19,7 @@ export class Customer extends AggregateRoot {
     email: CustomerEmail,
     address: CustomerAddress,
   ): Customer {
-    const credit = CustomerCredit.empty()
+    const credit = CustomerCredit.empty();
     const customer = new Customer(id, name, email, address, credit);
 
     customer.record(
@@ -59,19 +59,19 @@ export class Customer extends AggregateRoot {
   }
 
   set name(name: CustomerName) {
-    if(this._name.equals(name)) {
+    if (this._name.equals(name)) {
       return;
     }
 
-    this._name = name
-    this._updated = true
+    this._name = name;
+    this._updated = true;
 
     this.record(
       new CustomerNameChanged({
         entityId: this.id.value,
         name: this.name.value,
       }),
-    )
+    );
   }
 
   get email(): CustomerEmail {
@@ -79,19 +79,19 @@ export class Customer extends AggregateRoot {
   }
 
   set email(email: CustomerEmail) {
-    if(this._email.equals(email)) {
+    if (this._email.equals(email)) {
       return;
     }
 
-    this._email = email
-    this._updated = true
+    this._email = email;
+    this._updated = true;
 
     this.record(
       new CustomerEmailChanged({
         entityId: this.id.value,
         email: this.email.value,
       }),
-    )
+    );
   }
 
   get address(): CustomerAddress {
@@ -99,12 +99,12 @@ export class Customer extends AggregateRoot {
   }
 
   set address(address: CustomerAddress) {
-    if(this._address.equals(address)) {
+    if (this._address.equals(address)) {
       return;
     }
 
-    this._address = address
-    this._updated = true
+    this._address = address;
+    this._updated = true;
 
     this.record(
       new CustomerAddressChanged({
@@ -113,7 +113,7 @@ export class Customer extends AggregateRoot {
         city: this.address.city.value,
         postalCode: this.address.postalCode.value,
       }),
-    )
+    );
   }
 
   get credit(): CustomerCredit {
@@ -121,26 +121,26 @@ export class Customer extends AggregateRoot {
   }
 
   set credit(credit: CustomerCredit) {
-    if(this._credit.equals(credit)) {
+    if (this._credit.equals(credit)) {
       return;
     }
 
-    this._credit = credit
+    this._credit = credit;
 
     this.record(
-        new CustomerCreditChanged({
-          entityId: this.id.value,
-          credit: this.credit.value,
-        }),
-    )
+      new CustomerCreditChanged({
+        entityId: this.id.value,
+        credit: this.credit.value,
+      }),
+    );
   }
-  
+
   updated() {
-    if(!this._updated) {
-      return
+    if (!this._updated) {
+      return;
     }
 
-    this._updated = false
+    this._updated = false;
     this.record(
       new CustomerUpdated({
         entityId: this.id.value,
@@ -152,14 +152,14 @@ export class Customer extends AggregateRoot {
           postalCode: this.address.postalCode.value,
         },
       }),
-    )
+    );
   }
-  
+
   deleted() {
     this.record(
       new CustomerDeleted({
         entityId: this.id.value,
       }),
-    )
+    );
   }
 }

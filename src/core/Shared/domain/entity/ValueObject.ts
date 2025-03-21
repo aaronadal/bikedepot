@@ -1,5 +1,5 @@
 export abstract class ValueObject<T> {
-  public readonly value: T
+  public readonly value: T;
 
   protected constructor(value: T) {
     this.value = this.ensureIsValid(value);

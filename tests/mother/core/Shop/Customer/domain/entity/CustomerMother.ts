@@ -17,21 +17,27 @@ import { CustomerIdMother } from "./CustomerIdMother";
 import { CustomerNameMother } from "./CustomerNameMother";
 
 type CreateArgs = {
-    id?: CustomerId,
-    name?: CustomerName,
-    email?: CustomerEmail,
-    address?: CustomerAddress,
-    credit?: CustomerCredit,
-}
+  id?: CustomerId;
+  name?: CustomerName;
+  email?: CustomerEmail;
+  address?: CustomerAddress;
+  credit?: CustomerCredit;
+};
 
 export class CustomerMother {
-    static create({ id, name, email, address, credit }: CreateArgs = {}): Customer {
-        return new Customer(
-            id || CustomerIdMother.random(),
-            name || CustomerNameMother.random(),
-            email || CustomerEmailMother.random(),
-            address || CustomerAddressMother.create(),
-            credit || CustomerCreditMother.random(),
-        )
-    }
+  static create({
+    id,
+    name,
+    email,
+    address,
+    credit,
+  }: CreateArgs = {}): Customer {
+    return new Customer(
+      id || CustomerIdMother.random(),
+      name || CustomerNameMother.random(),
+      email || CustomerEmailMother.random(),
+      address || CustomerAddressMother.create(),
+      credit || CustomerCreditMother.random(),
+    );
+  }
 }
