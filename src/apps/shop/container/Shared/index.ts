@@ -7,6 +7,7 @@ import { SyncQueryBus } from "@core/Shared/infrastructure/bus/query/SyncQueryBus
 import { container, Lifecycle } from "tsyringe";
 import { APP_CONFIG } from "@apps/shop/config";
 import { TestEventBus } from "@core/Shared/infrastructure/bus/event/TestEventBus";
+import { DynamoDbManager } from "@core/Shared/infrastructure/persistence/dynamodb/DynamoDbManager";
 
 container.register<CommandBus>(
   "CommandBus",
@@ -32,3 +33,8 @@ if (APP_CONFIG.env === "test") {
     { lifecycle: Lifecycle.Singleton },
   );
 }
+
+container.registerInstance(
+  DynamoDbManager,
+  new DynamoDbManager(APP_CONFIG.dynamoDb.config),
+);

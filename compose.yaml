@@ -1,0 +1,15 @@
+name: bikedepot
+
+services:
+  dynamodb:
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb
+    ports:
+      - "8000:8000"
+    environment:
+      AWS_ACCESS_KEY_ID: 'dev'
+      AWS_SECRET_ACCESS_KEY: 'dev'
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"

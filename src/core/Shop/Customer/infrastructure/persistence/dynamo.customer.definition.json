@@ -1,0 +1,44 @@
+{
+  "TableName": "customers",
+  "KeySchema": [{ "AttributeName": "id", "KeyType": "HASH" }],
+  "AttributeDefinitions": [
+    { "AttributeName": "id", "AttributeType": "S" },
+    { "AttributeName": "const", "AttributeType": "S" },
+    { "AttributeName": "name", "AttributeType": "S" },
+    { "AttributeName": "credit", "AttributeType": "N" }
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "name-index",
+      "KeySchema": [
+        { "AttributeName": "const", "KeyType": "HASH" },
+        { "AttributeName": "name", "KeyType": "RANGE" }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    },
+    {
+      "IndexName": "credit-index",
+      "KeySchema": [
+        { "AttributeName": "const", "KeyType": "HASH" },
+        { "AttributeName": "credit", "KeyType": "RANGE" }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}
