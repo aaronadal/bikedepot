@@ -1,5 +1,5 @@
 import { app } from "@apps/shop/app";
-import { container } from "tsyringe";
+import { container } from "@apps/shop/container";
 import { CustomerMother } from "@test/mother/core/Shop/Customer/domain/entity/CustomerMother";
 import { CustomerView } from "@core/Shop/Customer/application/view/CustomerView";
 import { CustomerRepository } from "@core/Shop/Customer/domain/persistence/CustomerRepository";

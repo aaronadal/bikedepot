@@ -9,7 +9,7 @@ export default tseslint.config(
 
     {
         name: 'app/files-to-ignore',
-        ignores: ['dist/**', 'coverage/**', 'tests/**', 'jest.config.js'],
+        ignores: ['dist/**', 'coverage/**', 'tests/**', 'jest.config.js', '.serverless/**'],
     },
 
     eslint.configs.recommended,

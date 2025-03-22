@@ -1,5 +1,5 @@
 import { app } from "@apps/shop/app";
-import { container } from "tsyringe";
+import { container } from "@apps/shop/container";
 import { CustomerMother } from "@test/mother/core/Shop/Customer/domain/entity/CustomerMother";
 import { CustomerRepository } from "@core/Shop/Customer/domain/persistence/CustomerRepository";
 import { TestEventBus } from "@core/Shared/infrastructure/bus/event/TestEventBus";

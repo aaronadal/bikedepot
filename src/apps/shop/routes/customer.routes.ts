@@ -1,4 +1,4 @@
-import { container } from "tsyringe";
+import { container } from "@apps/shop/container";
 import { Hono } from "hono";
 import { ListController } from "../controller/Customer/list.controller";
 import { CreateController } from "@apps/shop/controller/Customer/create.controller";

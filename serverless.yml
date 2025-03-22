@@ -1,0 +1,76 @@
+org: aaronadal
+app: bikedepot
+service: bikedepot-api
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:SHOP_APP_AWS_REGION}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [ CustomersTable, Arn ]
+            - Fn::Join: ["/", [ {Fn::GetAtt: [ CustomersTable, Arn ]}, index, "*" ]
+  environment:
+    SLS_STAGE: ${sls:stage}
+
+functions:
+  api:
+    handler:  src/apps/shop/serverless.handler
+    events:
+      - httpApi: '*'
+
+resources:
+  Resources:
+    CustomersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        BillingMode: PAY_PER_REQUEST
+
+        TableName: '${env:SHOP_CUSTOMERS_TABLE}-${sls:stage}'
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: "S"
+          - AttributeName: const
+            AttributeType: "S"
+          - AttributeName: name
+            AttributeType: "S"
+          - AttributeName: credit
+            AttributeType: "N"
+        GlobalSecondaryIndexes:
+          - IndexName: name-index
+            KeySchema:
+              - AttributeName: const
+                KeyType: HASH
+              - AttributeName: name
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+          - IndexName: credit-index
+            KeySchema:
+              - AttributeName: const
+                KeyType: HASH
+              - AttributeName: credit
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+custom:
+  serverless-offline:
+    httpPort: ${env:SHOP_APP_PORT}

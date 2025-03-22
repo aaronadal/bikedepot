@@ -6,13 +6,15 @@ import {
   PutCommand,
   QueryCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { singleton } from "tsyringe";
+import {inject, singleton} from "tsyringe";
 
 @singleton()
 export class DynamoDbManager<T extends Record<string, any>> {
   readonly client: DynamoDBDocumentClient;
 
-  constructor(config: any) {
+  constructor(
+      @inject('DynamoDBConnectionConfig') config: any
+  ) {
     this.client = new DynamoDBClient(config);
   }
 

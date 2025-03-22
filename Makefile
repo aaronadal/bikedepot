@@ -1,12 +1,24 @@
 install:
 	yarn install
 
-start:
+docker-up:
 	docker-compose up -d
 
-stop:
+docker-down:
 	docker-compose down
 
 test:
 	yarn run lint
 	yarn run test
+
+init: install docker-up
+	yarn run migrate
+
+start:
+	yarn run dev
+
+deploy-local:
+	serverless offline --stage development --debug
+
+deploy-prod:
+	serverless deploy --stage prod

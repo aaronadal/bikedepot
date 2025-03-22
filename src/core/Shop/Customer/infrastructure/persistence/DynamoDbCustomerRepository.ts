@@ -1,4 +1,4 @@
-import { singleton } from "tsyringe";
+import { inject, singleton } from "tsyringe";
 import { CriteriaOrder } from "@core/Shared/domain/persistence/Criteria";
 import { Customer } from "@core/Shop/Customer/domain/entity/Customer";
 import {
@@ -16,7 +16,7 @@ import { CustomerAddressPostalCode } from "@core/Shop/Customer/domain/entity/Cus
 import { CustomerCredit } from "@core/Shop/Customer/domain/entity/CustomerCredit";
 
 type DynamoCustomer = {
-  const: typeof DynamoDbCustomerRepository.TABLE;
+  const: "customers";
   id: string;
   name: string;
   email: string;
@@ -30,22 +30,18 @@ type DynamoCustomer = {
 
 @singleton()
 export class DynamoDbCustomerRepository implements CustomerRepository {
-  static readonly TABLE = "customers";
-
-  constructor(private readonly manager: DynamoDbManager<DynamoCustomer>) {}
+  constructor(
+    @inject(DynamoDbManager)
+    private readonly manager: DynamoDbManager<DynamoCustomer>,
+    @inject("CustomersTableName") private readonly tableName: string,
+  ) {}
 
   async save(customer: Customer): Promise<void> {
-    await this.manager.save(
-      DynamoDbCustomerRepository.TABLE,
-      customerToDynamo(customer),
-    );
+    await this.manager.save(this.tableName, customerToDynamo(customer));
   }
 
   async search(id: CustomerId): Promise<Customer | null> {
-    const result = await this.manager.search(
-      DynamoDbCustomerRepository.TABLE,
-      id.value,
-    );
+    const result = await this.manager.search(this.tableName, id.value);
     if (result === null) {
       return null;
     }
@@ -61,8 +57,8 @@ export class DynamoDbCustomerRepository implements CustomerRepository {
       index += "-index";
     }
     const result = await this.manager.all(
-      DynamoDbCustomerRepository.TABLE,
-      ["const", DynamoDbCustomerRepository.TABLE],
+      this.tableName,
+      ["const", "customers"],
       index,
       orderBy?.order,
     );
@@ -71,13 +67,13 @@ export class DynamoDbCustomerRepository implements CustomerRepository {
   }
 
   async delete(id: CustomerId): Promise<void> {
-    await this.manager.delete(DynamoDbCustomerRepository.TABLE, id.value);
+    await this.manager.delete(this.tableName, id.value);
   }
 }
 
 function customerToDynamo(customer: Customer): DynamoCustomer {
   return {
-    const: DynamoDbCustomerRepository.TABLE,
+    const: "customers",
     id: customer.id.value,
     name: customer.name.value,
     email: customer.email.value,

@@ -11,7 +11,9 @@ async function createTables(definitions: Record<string, any>): Promise<void> {
   for (const key of keys) {
     try {
       console.log(`Creating ${key} table... `);
-      await dynamoClient.send(new CreateTableCommand(definitions[key]));
+
+      const definition = { ...definitions[key], TableName: key };
+      await dynamoClient.send(new CreateTableCommand(definition));
 
       console.log("Table created successfully");
     } catch (error) {
@@ -21,5 +23,5 @@ async function createTables(definitions: Record<string, any>): Promise<void> {
 }
 
 createTables({
-  customers: customerDefinition,
+  [APP_CONFIG.dynamoDb.customersTableName]: customerDefinition,
 });

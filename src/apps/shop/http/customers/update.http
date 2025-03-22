@@ -1,4 +1,4 @@
-PUT {{ host }}/customers/64f225dd-16fd-42d2-8833-412d89b3744c
+PUT {{ host }}/customers/787da459-b906-47f3-bcef-cb22436358de
 
 {
     "name": "John Doe",

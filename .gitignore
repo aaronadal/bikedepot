@@ -2,7 +2,8 @@ node_modules
 docker/dynamodb/*.db
 dist
 coverage
-.env
+.env*.local
 .DS_Store
 .idea
 *.log
+.serverless
