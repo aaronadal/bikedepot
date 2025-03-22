@@ -20,7 +20,7 @@ describe("[POST] /customers", () => {
   });
 
   it("should return 201 with the ID", async () => {
-    const customer = CustomerMother.create({ credit: CustomerCredit.empty() });
+    const customer = CustomerMother.create({ credit: CustomerCredit.createEmpty() });
     const view = CustomerView.fromCustomer(customer);
     const { id, credit, ...body } = view;
 

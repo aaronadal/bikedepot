@@ -19,7 +19,7 @@ export class Customer extends AggregateRoot {
     email: CustomerEmail,
     address: CustomerAddress,
   ): Customer {
-    const credit = CustomerCredit.empty();
+    const credit = CustomerCredit.createEmpty();
     const customer = new Customer(id, name, email, address, credit);
 
     customer.record(

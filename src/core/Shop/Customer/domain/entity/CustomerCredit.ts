@@ -5,7 +5,7 @@ export class CustomerCredit extends PositiveNumberValueObject {
     return new CustomerCredit(value);
   }
 
-  public static empty(): CustomerCredit {
+  public static createEmpty(): CustomerCredit {
     return new CustomerCredit(0);
   }
 }
