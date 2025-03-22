@@ -19,8 +19,8 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/ tests/",
 
-    "deploy-offline": "serverless offline --stage development --debug",
-    "deploy-aws": "serverless deploy --stage prod"
+    "deploy-offline": "serverless && serverless offline --stage development --debug",
+    "deploy-aws": "serverless && serverless deploy --stage prod"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.772.0",
