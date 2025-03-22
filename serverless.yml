@@ -10,6 +10,8 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: ${env:SHOP_APP_AWS_REGION}
+  environment:
+    SLS_STAGE: ${sls:stage}
   iam:
     role:
       statements:
@@ -23,9 +25,7 @@ provider:
             - dynamodb:DeleteItem
           Resource:
             - Fn::GetAtt: [ CustomersTable, Arn ]
-            - Fn::Join: ["/", [ {Fn::GetAtt: [ CustomersTable, Arn ]}, index, "*" ]
-  environment:
-    SLS_STAGE: ${sls:stage}
+            - Fn::Join: ["/", [ {Fn::GetAtt: [ CustomersTable, Arn ]}, index, "*" ]]
 
 functions:
   api:
