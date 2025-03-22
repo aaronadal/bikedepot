@@ -17,7 +17,7 @@ async function createTables(definitions: Record<string, any>): Promise<void> {
 
       console.log("Table created successfully");
     } catch (error) {
-      console.error("Error creating table:", `${error}`);
+      console.warn("Warning: ", `${error}`);
     }
   }
 }
